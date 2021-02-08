@@ -1,0 +1,31 @@
+﻿@model SmartTeleHealth.Web.Areas.Admin.Models.StateViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="top-bottom-padding">
+        <h2>Add A State</h2>
+        <hr />
+    </div>
+    @using (Html.BeginForm("Create", "States", new { area = "Admin" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.StateName, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(model => model.StateName, new { @class = "form-control" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="Add" class="btn btn-default" />
+                @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-warning" })
+            </div>
+        </div>
+    }
+</div>
+

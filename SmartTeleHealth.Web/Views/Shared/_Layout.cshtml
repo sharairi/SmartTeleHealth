@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Smart TeleHealth</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("Smart TeleHealth", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <img src="~/Content/Images/logo.png" width="100" height="80" class="" />
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+        @Html.Partial("_AdminPartial")
+                        @Html.Partial("_DoctorPartial")
+                                        @Html.Partial("_PatientPartial")
+                                                        <li>@Html.ActionLink("Manage Account", "Index", "Manage", new { Area = "" }, new { })</li> }
+                                                                    else
+                                                                    {
+                                                        <li>@Html.ActionLink("Home", "Index", "Home", new { Area = "" }, new { })</li>
+                                                                        <li>@Html.ActionLink("About", "About", "Home", new { Area = "" }, new { })</li>
+                                                                                        <li>@Html.ActionLink("Contact", "Contact", "Home", new { Area = "" }, new { })</li>}
+                </ul>
+                @*<div class="search">
+                        @using (Html.BeginForm("Results", "Home", FormMethod.Get,
+                            new { @class = "navbar-form navbar-left", role = "search", id = "searchForm" }))
+                        {
+                            <div class="form-group">
+                                <input name="search" id="target" type="text" class="form-control" placeholder="Search by Name" />
+                            </div>
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            <div id="searchSuggests" class="search-suggest"></div>
+                        }
+                    </div>*@
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - malsharayri@regis.edu</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

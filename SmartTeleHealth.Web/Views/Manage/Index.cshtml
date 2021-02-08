@@ -1,0 +1,80 @@
+﻿@model SmartTeleHealth.Web.Models.IndexViewModel
+@using SmartTeleHealth.Models
+@{
+    ViewBag.Title = "Manage your account";
+    var filePath = "Content/Uploads/Account/" + ViewBag.UserName + "/" + ViewBag.FileName;
+}
+<div class="row">
+    <div class="top-bottom-padding">
+        <h2>@ViewBag.Title.</h2>
+        <hr />
+        <p class="text-success">@ViewBag.StatusMessage</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">        
+        <div class="col-md-6">
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>Password: </dt>
+                    <dd>
+                        [
+                        @if (Model.HasPassword)
+                        {
+                            @Html.ActionLink("Change your password", "ChangePassword")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Create", "SetPassword")
+                        }
+                        ]
+                    </dd>
+                    <dt>Address: </dt>
+                    <dd>
+                        [
+                        @if (Model.HasAddress)
+                        {
+                            @Html.ActionLink("Edit Address", "EditAddress")
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Add Address", "AddAddress")
+                        }
+                        ]
+                    </dd>
+                    <dt>Profile: </dt>
+                    <dd>
+                        [
+                        @if (User.IsInRole(UserRoles.Patient.ToString()))
+                        {
+                            @Html.ActionLink("Update Profile", "UserProfile")
+                        }
+                        else if (User.IsInRole(UserRoles.Doctor.ToString()))
+                        {
+                            @Html.ActionLink("Update Profile", "DoctorProfile")
+                        }
+                        ]
+                    </dd>
+                    <dt>External Logins:</dt>
+                    <dd>
+                        @Model.Logins.Count [
+                        @Html.ActionLink("Manage", "ManageLogins") ]
+                    </dd>
+                    <dt>Update Image Profile:</dt>
+                    <dd>
+                        @Html.ActionLink("Profile Picture", "ProfilePicture", "Manage")
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-6">
+            @if ((ViewBag.FileName) != null && (ViewBag.FileName).Length > 0)
+            {
+                <div class="thumbnail">
+                    <img class="img-responsive" src="@filePath" alt="account-image" />
+                </div>
+            }
+        </div>
+    </div>    
+</div>
+

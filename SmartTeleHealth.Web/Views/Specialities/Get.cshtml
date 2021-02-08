@@ -1,0 +1,41 @@
+﻿@using PagedList.Mvc
+@model SmartTeleHealth.Web.Models.Specialities.HomeSpecialityViewModel
+@{
+    ViewBag.Title = "Speciality Details";
+}
+
+<div class="row">
+    <div class="top-bottom-padding">
+        <h2>@ViewBag.Title</h2>
+        <h3>@Model.Name</h3>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Comments</th>
+                <th>Ratings</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doctor in Model.Doctors)
+            {
+                <tr>
+                    <td>
+                        <strong>@Html.ActionLink(doctor.FullName, "Get", "Doctor", new { id = doctor.Id }, null)</strong>
+                        &nbsp;&nbsp;&nbsp;
+                        <small>@doctor.CityName</small>
+                    </td>
+                    <td>@doctor.CommentsCount</td>
+                    <td>@doctor.Rating.ToString("F2")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @*@Html.PagedListPager((PagedList.PagedList<SpecialityDoctorViewModel>)Model.Doctors, page => Url.Action("Get", new { page }))*@
+</div>
+
+

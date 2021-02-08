@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc
+@model SmartTeleHealth.Web.Models.Doctors.FilterDoctorsViewModel
+@{
+    ViewBag.Title = "Search Best";
+    //var filePath = "Content/Uploads/Account/";
+}
+
+<div class="row top-bottom-padding">
+    <div class="padding-top-40">
+        <div class="row">
+            @using (Html.BeginForm("SearchBest", "Home", FormMethod.Get))
+            {
+                <div class="col-md-4 col-sm-4 padding-0">
+                    <div class="form-group text-left">
+                        <span class="fa fa-user-md"></span>
+                        <input class="form-control" type="text" name="name"
+                               placeholder="Search By Name" maxlength="70" autocomplete="off">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 padding-0">
+                    <div class="form-group">
+                        <select class="form-control sm-field" name="speciality">
+                            <!--  2 -->
+                            <option>Select speciality</option>
+                            @foreach (var d in Model.Specialities)
+                            {
+                                <option value=@d.Value> @d.Text  </option>
+                            }
+
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3 padding-0">
+
+                    <div class="form-group">
+                        <!--  3 -->
+                        <input class="form-control" type="text" name="search" placeholder="Enter City or ZipCode" maxlength="50" autocomplete="off">
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2 text-left">
+                    <div class="form-group">
+                        <input type="submit" value="Search" class="form-control btn btn-success">
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <hr />
+</div>
+<div class="row">
+    @if (Model.Doctors.Count > 0)
+    {
+        foreach (var doctor in Model.Doctors)
+        {
+            <div class="row search-row-container">
+                <div class="col-md-6 doc-prof-row">
+                    <div class="col-md-4">
+                        @{
+                            var filePath = "../Content/Uploads/Account/" + doctor.UserName + "/" + doctor.ImageUrl;
+                        }
+                        @if (doctor.ImageUrl != null)
+                        {
+                            <img class="img-circle img-responsive" src=@filePath />
+                        }
+                    </div>
+                    <div class="col-md-8">
+                        <div>
+                            @if (doctor.Speciality != null)
+                            {
+                                <h3>Speciality: @doctor.Speciality.Name</h3>
+                            }
+                            <h3>Name: @doctor.FirstName @doctor.LastName</h3>
+                        </div>
+                        <div>
+                            @Html.ActionLink(doctor.FirstName, "Get", "Doctor", new { id = doctor.DoctorId }, new { @class="btn btn-primary" })
+                            @if (doctor.Speciality != null)
+                            {
+                                @Html.ActionLink(doctor.Speciality.Name, "Get", "Specialities", new { id = doctor.Speciality.Id }, new { @class = "btn btn-primary" })
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+
+            </div>
+        }
+
+        <div class="row">
+            @Html.PagedListPager(Model.Doctors, page => Url.Action("All", new { page, city = ViewBag.CityId, speciality = ViewBag.SpecialityId }))
+        </div>
+    }
+    else
+    {
+        <h3 class="text-center">
+            <span class="label label-default">No result found!</span>
+        </h3>
+    }
+</div>
+
+
