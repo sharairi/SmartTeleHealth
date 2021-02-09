@@ -9,7 +9,7 @@ namespace SmartTeleHealth.Web.Models.Home
 {
     public class HomeTablesViewModel
     {
-        [Display(Name = "Most Commented")]
+        [Display(Name = "Recent Comments")]
         public IEnumerable<HomeDoctorViewModel> MostCommented { get; set; }
 
         [Display(Name = "Highest Rating")]
