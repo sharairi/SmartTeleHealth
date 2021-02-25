@@ -11,7 +11,7 @@ namespace SmartTeleHealth.Web.Models
         public int Id { get; set; }
 
         [Display(Name ="Dates")]
-        public String Dates { get; set; }
+        public DateTime Dates { get; set; }
 
         [Display(Name = "From Hour")]
         public int FromHour { get; set; }

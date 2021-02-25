@@ -13,6 +13,7 @@ namespace SmartTeleHealth.Web.Models
         public int AppointmentId { get; set; }
 
         [Display(Name = "Taken At")]
+
         public DateTime CreatedOn { get; set; }
 
         [Display(Name = "Updated At")]
@@ -24,7 +25,7 @@ namespace SmartTeleHealth.Web.Models
 
         [Required]
         [Display(Name = "Booking Date")]
-        public String Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Display(Name = "Serial")]
         public int Serial { get; set; }

@@ -8,7 +8,7 @@ namespace SmartTeleHealth.Models
     {
         [Key]
         public int Id { get; set; }
-        public String Dates { get; set; }
+        public System.DateTime Dates { get; set; }
         public int FromHour { get; set; }
         public int FromMinute { get; set; }
         public int ToHour { get; set; }

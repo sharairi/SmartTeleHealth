@@ -62,7 +62,7 @@ namespace SmartTeleHealth.Web.Areas
 
         public ActionResult SearchBest(int page = 1, string name = null, int? speciality = null, string search = null)
         {
-            if( !string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 name = name.Trim();
                 //if (name.IndexOf(' ') != -1)

@@ -33,6 +33,23 @@ namespace SmartTeleHealth.Web.Areas
             return View();
         }
 
+        [HttpGet]
+        public JsonResult GetNotifications()
+        {
+            List<Notifications> lstDataSubmit = new List<Notifications>();
+
+            /// Should update from DB
+            ///
+            ///e.g. Generating Notification manually
+            var No = 10;
+            while (No != 0)
+            {
+                lstDataSubmit.Add(new Notifications() { Notification = "This is dynamic notification..." + No, LastUpdated = DateTime.Now.ToString("ss") + " seconds ago..." });
+                No--;
+            }
+            return Json(lstDataSubmit, JsonRequestBehavior.AllowGet);
+        }
+
         public async Task<ContentResult> GetAppointments()
         {
             using (ApplicationDbContext dc = new ApplicationDbContext())

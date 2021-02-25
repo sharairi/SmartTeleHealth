@@ -37,6 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <LangVersion>default</LangVersion>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -240,6 +241,7 @@
     <Compile Include="Models\AddressViewModel.cs" />
     <Compile Include="Models\AppointmentViewModel.cs" />
     <Compile Include="Models\CityListViewModel.cs" />
+    <Compile Include="Models\Notifications.cs" />
     <Compile Include="Models\DoctorSearchViewModel.cs" />
     <Compile Include="Models\Doctors\FilterDoctorsViewModel.cs" />
     <Compile Include="Models\DoctorViewModel.cs" />
@@ -499,6 +501,8 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\ServerError.cshtml" />
     <Content Include="Views\AppointmentsCalendar\Index.cshtml" />
+    <Content Include="Views\Doctor\VideoConferenceSettings.cshtml" />
+    <Content Include="Views\Patient\JoinVideoConference.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -74,6 +74,14 @@
     <Compile Include="Migrations\202102071905221_add new calendar fields to the model appoitment,cs file.Designer.cs">
       <DependentUpon>202102071905221_add new calendar fields to the model appoitment,cs file.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202102120136264_deploy.cs" />
+    <Compile Include="Migrations\202102120136264_deploy.Designer.cs">
+      <DependentUpon>202102120136264_deploy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202102190040492_change dates to datetime.cs" />
+    <Compile Include="Migrations\202102190040492_change dates to datetime.Designer.cs">
+      <DependentUpon>202102190040492_change dates to datetime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
@@ -116,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102071905221_add new calendar fields to the model appoitment,cs file.resx">
       <DependentUpon>202102071905221_add new calendar fields to the model appoitment,cs file.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102120136264_deploy.resx">
+      <DependentUpon>202102120136264_deploy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202102190040492_change dates to datetime.resx">
+      <DependentUpon>202102190040492_change dates to datetime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

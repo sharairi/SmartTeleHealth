@@ -35,6 +35,11 @@ namespace SmartTeleHealth.Web.Areas
             return View(model);
         }
 
+        public ActionResult JoinVideoConference()
+        {
+            return View();
+        }
+
         // GET: Patient/Appointments
         public async Task<ActionResult> Appointments()
         {
@@ -54,7 +59,7 @@ namespace SmartTeleHealth.Web.Areas
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var doctor = _doctorService.GetDoctor(id.Value);
-            if(doctor == null)
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
@@ -62,11 +67,11 @@ namespace SmartTeleHealth.Web.Areas
             model.DoctorId = doctor.DoctorId;
             model.Doctor = doctor;
             var schedules = _doctorService.GetSchedulesByDoctorId(doctor.DoctorId).ToList()
-                            .Where(d => DateTime.Parse(d.Dates).Date >= DateTime.Now.Date);
+                            .Where(d => d.Dates >= DateTime.Now.Date);
             model.ScheduleDates = schedules.Select(s => new SelectListItem
             {
                 Value = s.Dates.ToString(),
-                Text = s.Dates
+                Text = s.Dates.ToString()
             });
             return View(model);
         }
@@ -83,7 +88,7 @@ namespace SmartTeleHealth.Web.Areas
             model.ScheduleDates = schedules.ToList().Select(s => new SelectListItem
             {
                 Value = s.Dates.ToString(),
-                Text = s.Dates
+                Text = s.Dates.ToString()
             });
             if (ModelState.IsValid)
             {
@@ -102,7 +107,7 @@ namespace SmartTeleHealth.Web.Areas
                 }
 
                 var isSave = _patientService.RegisterAppointment(appointment);
-                if(isSave > 0)
+                if (isSave > 0)
                 {
                     return RedirectToAction("Appointments");
                 }

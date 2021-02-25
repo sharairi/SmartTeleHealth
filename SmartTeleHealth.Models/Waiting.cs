@@ -10,7 +10,7 @@ namespace SmartTeleHealth.Models
         public int Id { get; set; }
         public String Name { get; set; }
         public int Serial { get; set; }
-        public String Date { get; set; }
+        public System.DateTime Date { get; set; }
 
         [ForeignKey("Patient")]
         public int PatientId { get; set; }

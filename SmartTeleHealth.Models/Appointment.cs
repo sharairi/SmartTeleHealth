@@ -9,7 +9,7 @@ namespace SmartTeleHealth.Models
         [Key]
         public int AppointmentId { get; set; }
         public String AppointmentDesc { get; set; }
-        public String Date { get; set; }
+        public System.DateTime Date { get; set; }
         public System.DateTime Start { get; set; }
         public Nullable<System.DateTime> End { get; set; }
         public int Serial { get; set; }

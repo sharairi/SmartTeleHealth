@@ -60,5 +60,7 @@ namespace SmartTeleHealth.Models
         {
             get { return FirstName + " " + LastName; }
         }
+
+
     }
 }

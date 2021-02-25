@@ -17,8 +17,8 @@ namespace SmartTeleHealth.Data.Services
         int SavePatient(Patient patient);
         List<Appointment> GetAppointmentsByPatientId(int Id);
         Appointment GetAppointmentById(int Id);
-        bool IsAppointmentTaken(int userId, string date, int doctorId);
-        bool IsAppointmentAvailable(int doctorId, String date);
+        bool IsAppointmentTaken(int userId, DateTime date, int doctorId);
+        bool IsAppointmentAvailable(int doctorId, DateTime date);
         int RegisterAppointment(Appointment model);
     }
     public class PatientService : IPatientservice
@@ -78,18 +78,18 @@ namespace SmartTeleHealth.Data.Services
                 return -1;
             }
         }
-        public bool IsAppointmentTaken(int userId, string date, int doctorId)
+        public bool IsAppointmentTaken(int userId, DateTime date, int doctorId)
         {
             var appointments = this._appointmentRepo.SearchFor(p => p.PatientId == userId).ToList();
             return appointments.Count(e => e.Date == date && e.DoctorId == doctorId) > 0;
         }
-        public bool IsAppointmentAvailable(int doctorId, string date)
+        public bool IsAppointmentAvailable(int doctorId, DateTime date)
         {
             return _appointmentRepo.SearchFor(e => e.DoctorId == doctorId && e.Date == date).ToList().Count() < _scheduleRepo.SearchFor(e => e.DoctorId == doctorId && e.Dates == date).FirstOrDefault().PatientNumber;
             //return this._appointmentRepo.IsAppointmentAvailable(doctorId, date);
         }
 
-        public int GenerateSerial(int doctorId, String date)
+        public int GenerateSerial(int doctorId, DateTime date)
         {
             return this._appointmentRepo.SearchFor(e => e.DoctorId == doctorId && e.Date == date).ToList().Count();
         }

@@ -27,9 +27,14 @@ namespace SmartTeleHealth.Web.Areas
             this._doctorService = doctorservice;
             this.cityService = cityService;
         }
-        
+
         // GET: Doctor
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult VideoConferenceSettings()
         {
             return View();
         }
@@ -112,7 +117,7 @@ namespace SmartTeleHealth.Web.Areas
             }
 
             Schedule schedule = _doctorService.GetScheduleById(id.Value);
-            if(schedule == null)
+            if (schedule == null)
             {
                 return HttpNotFound();
             }
@@ -179,7 +184,7 @@ namespace SmartTeleHealth.Web.Areas
         [HttpGet]
         public ActionResult Get(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 return this.HttpNotFound("No such doctor existing.");
             }
@@ -193,16 +198,16 @@ namespace SmartTeleHealth.Web.Areas
             }
 
             var existingDoctor = Mapper.Map<DoctorViewModel>(doctor);
-            var schedules  = _doctorService.GetSchedulesByDoctorId(doctor.DoctorId)
-                                .OrderByDescending(d => d.Dates ).ToList()
-                                .Where(d => DateTime.Parse(d.Dates).Date >= DateTime.Now.Date);
+            var schedules = _doctorService.GetSchedulesByDoctorId(doctor.DoctorId)
+                                .OrderByDescending(d => d.Dates).ToList()
+                                .Where(d => d.Dates >= DateTime.Now.Date);
 
             //schedules.Where(d => DateTime.Parse(d.Dates).Date <= DateTime.Now.Date);
 
             ViewBag.Schedules = schedules.Select(s => new SelectListItem
             {
                 Value = s.Dates.ToString(),
-                Text = s.Dates
+                Text = s.Dates.ToString()
             });
 
             ViewBag.UserName = doctor.User.UserName;
