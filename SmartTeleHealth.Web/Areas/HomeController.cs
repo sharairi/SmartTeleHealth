@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using System;
 
 namespace SmartTeleHealth.Web.Areas
 {
@@ -20,6 +21,23 @@ namespace SmartTeleHealth.Web.Areas
         {
             this.doctorService = doctorservice;
             this.cityService = cityService;
+        }
+
+        [HttpGet]
+        public JsonResult GetNotifications()
+        {
+            List<Notifications> lstDataSubmit = new List<Notifications>();
+
+            /// Should update from DB
+            ///
+            ///e.g. Generating Notification manually
+            var No = 10;
+            while (No != 0)
+            {
+                lstDataSubmit.Add(new Notifications() { Notification = "This is dynamic notification..." + No, LastUpdated = DateTime.Now.ToString("ss") + " seconds ago..." });
+                No--;
+            }
+            return Json(lstDataSubmit, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Index()
@@ -59,6 +77,7 @@ namespace SmartTeleHealth.Web.Areas
 
             return View(homeTables);
         }
+
 
         public ActionResult SearchBest(int page = 1, string name = null, int? speciality = null, string search = null)
         {

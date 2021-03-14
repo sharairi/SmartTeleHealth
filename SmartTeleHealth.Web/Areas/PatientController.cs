@@ -40,6 +40,11 @@ namespace SmartTeleHealth.Web.Areas
             return View();
         }
 
+        public ActionResult HeartRate()
+        {
+            return View();
+        }
+
         // GET: Patient/Appointments
         public async Task<ActionResult> Appointments()
         {
@@ -95,6 +100,8 @@ namespace SmartTeleHealth.Web.Areas
                 model.PatientId = patientId;
                 model.CreatedOn = DateTime.UtcNow;
                 model.UpdatedOn = DateTime.UtcNow;
+                model.Start = DateTime.UtcNow;
+                model.End = DateTime.UtcNow;
                 model.Uid = Guid.NewGuid().ToString();
                 var appointment = Mapper.Map<Appointment>(model);
 

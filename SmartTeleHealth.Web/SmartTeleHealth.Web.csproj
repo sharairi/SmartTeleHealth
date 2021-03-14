@@ -266,6 +266,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\HeartRate\app.js" />
+    <Content Include="Content\HeartRate\HeartRate.css" />
+    <Content Include="Content\HeartRate\heartRateSensor.js" />
     <Content Include="Content\Images\alcohol.png" />
     <Content Include="Content\Images\asterisk.png" />
     <Content Include="Content\Images\bandage.png" />
@@ -503,6 +506,7 @@
     <Content Include="Views\AppointmentsCalendar\Index.cshtml" />
     <Content Include="Views\Doctor\VideoConferenceSettings.cshtml" />
     <Content Include="Views\Patient\JoinVideoConference.cshtml" />
+    <Content Include="Views\Patient\HeartRate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -528,6 +532,9 @@
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />

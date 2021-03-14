@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "HeartRate";
+}
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Heart Rate</title>
+    <meta name="description" content="Monitor the patient heart rate">
+    <link rel="icon" sizes="192x192" href="../favicon.png">
+    <link rel="stylesheet" href="~/Content/HeartRate/HeartRate.css">
+</head>
+<body>
+    <div id="containerHeartRate">
+        <div id="statusTextHeartRate">Click Here <br />&#x2764;</div>
+        <canvas id="wavesHeartRate"></canvas>
+    </div>
+    <script src="~/Content/HeartRate/heartRateSensor.js"></script>
+    <script src="~/Content/HeartRate/app.js"></script>
+</body>
+</html>

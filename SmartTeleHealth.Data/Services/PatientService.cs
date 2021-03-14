@@ -67,7 +67,7 @@ namespace SmartTeleHealth.Data.Services
         }
         public int RegisterAppointment(Appointment model)
         {
-            if(IsAppointmentAvailable(model.DoctorId, model.Date))
+            if (IsAppointmentAvailable(model.DoctorId, model.Date))
             {
                 model.Serial = GenerateSerial(model.DoctorId, model.Date) + 1;
                 this._appointmentRepo.Add(model);
@@ -85,7 +85,10 @@ namespace SmartTeleHealth.Data.Services
         }
         public bool IsAppointmentAvailable(int doctorId, DateTime date)
         {
-            return _appointmentRepo.SearchFor(e => e.DoctorId == doctorId && e.Date == date).ToList().Count() < _scheduleRepo.SearchFor(e => e.DoctorId == doctorId && e.Dates == date).FirstOrDefault().PatientNumber;
+            int c = _appointmentRepo.SearchFor(e => e.DoctorId == doctorId && e.Date == date).ToList().Count();
+            int i = _scheduleRepo.SearchFor(e => e.DoctorId == doctorId && e.Dates == date).FirstOrDefault().PatientNumber;
+            bool res = c <= i;
+            return res;
             //return this._appointmentRepo.IsAppointmentAvailable(doctorId, date);
         }
 
