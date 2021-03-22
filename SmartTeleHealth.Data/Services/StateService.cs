@@ -13,6 +13,9 @@ namespace SmartTeleHealth.Data.Services
         IEnumerable<State> GetStates();
         State GetState(int id);
         int SaveState(State state);
+
+        int UpdateState(State state);
+
     }
     public class StateService : IStateService
     {
@@ -25,7 +28,7 @@ namespace SmartTeleHealth.Data.Services
 
         public State GetState(int id)
         {
-            throw new NotImplementedException();
+            return stateRepository.Get(id);
         }
 
         public IEnumerable<State> GetStates()
@@ -38,5 +41,12 @@ namespace SmartTeleHealth.Data.Services
             this.stateRepository.Add(state);
             return this.stateRepository.SaveChanges();
         }
+
+        public int UpdateState(State state)
+        {
+            this.stateRepository.Update(state);
+            return this.stateRepository.SaveChanges();
+        }
+
     }
 }

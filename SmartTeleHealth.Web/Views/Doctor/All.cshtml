@@ -42,7 +42,9 @@
                     {
                         <div class="row">
                             <h3>@Html.ActionLink(doctor.FirstName, "Get", new { id = doctor.DoctorId })</h3>
+
                             @*<p>@("UIN: " + doctor.UIN + ", ")@Html.ActionLink(doctor.CityName, "/")</p>*@
+
                             <p>@Html.ActionLink(doctor.Speciality.Name, "Get", "Specialities", new { id = doctor.Speciality.Id }, null)</p>
                         </div>
                     }

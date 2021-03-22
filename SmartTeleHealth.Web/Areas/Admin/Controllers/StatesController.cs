@@ -4,6 +4,7 @@ using SmartTeleHealth.Web.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -25,10 +26,20 @@ namespace SmartTeleHealth.Web.Areas.Admin.Controllers
             return View(states);
         }
 
-        // GET: Admin/States/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            State state = this.stateService.GetState(id.Value);
+            if (state == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = AutoMapper.Mapper.Map<StateViewModel>(state);
+            return View(model);
         }
 
         // GET: Admin/States/Create
@@ -54,7 +65,7 @@ namespace SmartTeleHealth.Web.Areas.Admin.Controllers
 
                     var isSave = stateService.SaveState(state);
 
-                    if(isSave > 0)
+                    if (isSave > 0)
                     {
                         return RedirectToAction("Index");
                     }
@@ -67,26 +78,43 @@ namespace SmartTeleHealth.Web.Areas.Admin.Controllers
             return View(model);
         }
 
-        // GET: Admin/States/Edit/5
-        public ActionResult Edit(int id)
+        // GET: Admin/State/Edit/5
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            State state = this.stateService.GetState(id.Value);
+            if (state == null)
+            {
+                return HttpNotFound();
+            }
+            var model = AutoMapper.Mapper.Map<StateViewModel>(state);
+            return View(model);
         }
 
-        // POST: Admin/States/Edit/5
+        // POST: Admin/State/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(StateViewModel model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                State state = this.stateService.GetState(model.Id);
+                state = AutoMapper.Mapper.Map(model, state);
+                state.UpdatedOn = DateTime.UtcNow;
 
-                return RedirectToAction("Index");
+
+                var isUpdate = this.stateService.UpdateState(state);
+                if (isUpdate > 0)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(model);
         }
 
         // GET: Admin/States/Delete/5

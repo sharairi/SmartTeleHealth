@@ -21,6 +21,7 @@ namespace SmartTeleHealth.Models
         public string StateName { get; set; }
 
         private ICollection<City> cities;
+
         public virtual ICollection<City> Cities
         {
             get { return this.cities; }

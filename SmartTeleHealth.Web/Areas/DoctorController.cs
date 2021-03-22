@@ -161,6 +161,7 @@ namespace SmartTeleHealth.Web.Areas
                 .GetCities()
                 .Select(c => new SelectListItem { Text = c.CityName, Value = c.CityId.ToString() })
                 .ToList();
+
             var selectedAll = new SelectListItem { Text = "All", Value = "" };
             citiesList.Insert(0, selectedAll);
 
@@ -168,6 +169,7 @@ namespace SmartTeleHealth.Web.Areas
                 .GetSpecialities()
                 .Select(s => new SelectListItem { Text = s.Name, Value = s.Id.ToString() })
                 .ToList();
+
             specialitiesList.Insert(0, selectedAll);
 
             var model = new FilterDoctorsViewModel()
