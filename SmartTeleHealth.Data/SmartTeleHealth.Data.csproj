@@ -62,25 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Infrastructure\ApplicationDbContext.cs" />
-    <Compile Include="Migrations\202102062025130_change_appointment_table.cs" />
-    <Compile Include="Migrations\202102062025130_change_appointment_table.Designer.cs">
-      <DependentUpon>202102062025130_change_appointment_table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102062135215_change_appointment_table_add_start_time.cs" />
-    <Compile Include="Migrations\202102062135215_change_appointment_table_add_start_time.Designer.cs">
-      <DependentUpon>202102062135215_change_appointment_table_add_start_time.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102071905221_add new calendar fields to the model appoitment,cs file.cs" />
-    <Compile Include="Migrations\202102071905221_add new calendar fields to the model appoitment,cs file.Designer.cs">
-      <DependentUpon>202102071905221_add new calendar fields to the model appoitment,cs file.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102120136264_deploy.cs" />
-    <Compile Include="Migrations\202102120136264_deploy.Designer.cs">
-      <DependentUpon>202102120136264_deploy.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102190040492_change dates to datetime.cs" />
-    <Compile Include="Migrations\202102190040492_change dates to datetime.Designer.cs">
-      <DependentUpon>202102190040492_change dates to datetime.cs</DependentUpon>
+    <Compile Include="Migrations\202103250021375_InitialCreate_Azure.cs" />
+    <Compile Include="Migrations\202103250021375_InitialCreate_Azure.Designer.cs">
+      <DependentUpon>202103250021375_InitialCreate_Azure.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,20 +100,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102062025130_change_appointment_table.resx">
-      <DependentUpon>202102062025130_change_appointment_table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102062135215_change_appointment_table_add_start_time.resx">
-      <DependentUpon>202102062135215_change_appointment_table_add_start_time.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102071905221_add new calendar fields to the model appoitment,cs file.resx">
-      <DependentUpon>202102071905221_add new calendar fields to the model appoitment,cs file.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102120136264_deploy.resx">
-      <DependentUpon>202102120136264_deploy.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102190040492_change dates to datetime.resx">
-      <DependentUpon>202102190040492_change dates to datetime.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103250021375_InitialCreate_Azure.resx">
+      <DependentUpon>202103250021375_InitialCreate_Azure.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
